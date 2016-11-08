@@ -9,22 +9,16 @@ import org.apache.spark.SparkContext
 import org.apache.spark.sql.SQLContext
 
 class Main {
-  val conf = new SparkConf().setAppName("lab1").setMaster("local")
-  val sc = new SparkContext(conf)
-  val sqlContext = new SQLContext(sc)
-
-  import sqlContext.implicits._
-  import sqlContext._
-
-  val filePath = "src/main/resources/millionsong.txt"
-  val rawDF = ???
-
-  case class Song(year: Double, f1: Double, f2: Double, f3: Double)
   def main(args: Array[String]) {
+    val conf = new SparkConf().setAppName("lab1").setMaster("local")
+    val sc = new SparkContext(conf)
     val sqlContext = new SQLContext(sc)
 
     import sqlContext.implicits._
     import sqlContext._
+
+    val filePath = "src/main/resources/millionsong.txt"
+    val rawDF = ???
 
     val rdd = sc.textFile(filePath)
 

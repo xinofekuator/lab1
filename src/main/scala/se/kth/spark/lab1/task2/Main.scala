@@ -9,50 +9,52 @@ import org.apache.spark.SparkContext
 import org.apache.spark.sql.SQLContext
 
 class Main {
-  val conf = new SparkConf().setAppName("lab1").setMaster("local")
-  val sc = new SparkContext(conf)
-  val sqlContext = new SQLContext(sc)
+  def main(args: Array[String]) {
+    val conf = new SparkConf().setAppName("lab1").setMaster("local")
+    val sc = new SparkContext(conf)
+    val sqlContext = new SQLContext(sc)
 
-  import sqlContext.implicits._
-  import sqlContext._
+    import sqlContext.implicits._
+    import sqlContext._
 
-  val filePath = "src/main/resources/millionsong.txt"
-  val rawDF = ???
-  
-  //Step1: tokenize each row
-  val regexTokenizer = new RegexTokenizer()
-    .setInputCol(???)
-    .setOutputCol(???)
-    .setPattern(???)
+    val filePath = "src/main/resources/millionsong.txt"
+    val rawDF = ???
 
-  //Step2: transform with tokenizer and show 5 rows
-  ???
+    //Step1: tokenize each row
+    val regexTokenizer = new RegexTokenizer()
+      .setInputCol(???)
+      .setOutputCol(???)
+      .setPattern(???)
 
-  //Step3: transform array of tokens to a vector of tokens (use our ArrayToVector)
-  val arr2Vect = new Array2Vector()
-  ???
+    //Step2: transform with tokenizer and show 5 rows
+    ???
 
-  //Step4: extract the label(year) into a new column
-  val lSlicer = ???
+    //Step3: transform array of tokens to a vector of tokens (use our ArrayToVector)
+    val arr2Vect = new Array2Vector()
+    ???
 
-  //Step5: convert type of the label from vector to double (use our Vector2Double)
-  val v2d = new Vector2DoubleUDF(???)
-  ???
-  //Step6: shift all labels by the value of minimum label such that the value of the smallest becomes 0 (use our DoubleUDF) 
-  val lShifter = new DoubleUDF(???)
-  ???
-  //Step7: extract just the 3 first features in a new vector column
-  val fSlicer = ???
+    //Step4: extract the label(year) into a new column
+    val lSlicer = ???
 
-  //Step8: put everything together in a pipeline
-  val pipeline = new Pipeline().setStages(???)
+    //Step5: convert type of the label from vector to double (use our Vector2Double)
+    val v2d = new Vector2DoubleUDF(???)
+    ???
+    //Step6: shift all labels by the value of minimum label such that the value of the smallest becomes 0 (use our DoubleUDF) 
+    val lShifter = new DoubleUDF(???)
+    ???
+    //Step7: extract just the 3 first features in a new vector column
+    val fSlicer = ???
 
-  //Step9: generate model by fitting the rawDf into the pipeline
-  val pipelineModel = pipeline.fit(rawDF)
+    //Step8: put everything together in a pipeline
+    val pipeline = new Pipeline().setStages(???)
 
-  //Step10: transform data with the model - do predictions
-  ???
+    //Step9: generate model by fitting the rawDf into the pipeline
+    val pipelineModel = pipeline.fit(rawDF)
 
-  //Step11: drop all columns from the dataframe other than label and features
-  ???
+    //Step10: transform data with the model - do predictions
+    ???
+
+    //Step11: drop all columns from the dataframe other than label and features
+    ???
+  }
 }
