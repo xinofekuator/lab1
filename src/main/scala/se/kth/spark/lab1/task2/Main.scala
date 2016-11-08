@@ -8,7 +8,7 @@ import org.apache.spark.SparkConf
 import org.apache.spark.SparkContext
 import org.apache.spark.sql.SQLContext
 
-class Main {
+object Main {
   def main(args: Array[String]) {
     val conf = new SparkConf().setAppName("lab1").setMaster("local")
     val sc = new SparkContext(conf)
