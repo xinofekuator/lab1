@@ -3,6 +3,7 @@ package se.kth.spark.lab1
 import org.apache.spark.ml.UnaryTransformer
 import org.apache.spark.ml.util.Identifiable
 import org.apache.spark.sql.types.DoubleType
+import org.apache.spark.ml.param.ParamMap
 
 class DoubleUDF(override val uid: String, val udf: Double => Double)
     extends UnaryTransformer[Double, Double, DoubleUDF] {
@@ -13,5 +14,9 @@ class DoubleUDF(override val uid: String, val udf: Double => Double)
 
   override protected def outputDataType: DoubleType = {
     DoubleType
+  }
+  
+  override def copy(extra: ParamMap): DoubleUDF = {
+    new DoubleUDF(udf).setInputCol(getInputCol).setOutputCol(getOutputCol)
   }
 }
